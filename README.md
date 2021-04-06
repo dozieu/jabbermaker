@@ -78,7 +78,7 @@ The script has 2 of each to demonstrate options but you can add more or less as 
 You can add more if applicable e.g. 'site_c': 'devicepool_C'
 if you do, remember to add extra option to variable 'location' and extra 'if' block, like below
 
-location =  pyip.inputMenu(['For Site_A','For Site_B','For Site_C'], numbered=True)
+	location =  pyip.inputMenu(['For Site_A','For Site_B','For Site_C'], numbered=True)
 
 	if location == 'For Site_C':        
     		ph_css = searchspace['site_c']
