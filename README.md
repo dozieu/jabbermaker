@@ -62,9 +62,9 @@ you will need to edit the variables to match your environment
 
 DEFAULT_PT  = partition used by the directory numbers
 
-INTERNAL_CSS  = internal seacrh space if applicable
+INTERNAL_CSS  = internal search space if applicable
 
-EXTERNAL_CSS = external seacrh space if applicable
+EXTERNAL_CSS = external search space if applicable
 
 you will need to edit the dictionaries 'devicepools' and 'searchspace' to reflect your environmnets device pool names and calling search spaces used by your phones.
 
