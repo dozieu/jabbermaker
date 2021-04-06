@@ -56,7 +56,7 @@ def get_pt(defaultpt):
 
 
 def make_devicename(dname, devicetype='CSF'):
-    #Generates device name from dname and phone type    
+    #Generates device name from name and phone type    
     for i in dname:
         if i.isalnum() == False:
             dname = dname.replace(i, '')
@@ -161,8 +161,8 @@ while True:
 	alertingname = input('Enter line Alerting name: ')
 
 	print(('=' * 42) + '\n')
-	location =  pyip.inputMenu(['For Site_A','For Site_B'], numbered=True)
-	phonemodel = pyip.inputMenu(['CSF', 'Iphone', 'Android','Tablet'], numbered=True)
+	location =  pyip.inputMenu(['For Site_A','For Site_B'],prompt='Please select site: \n', numbered=True)
+	phonemodel = pyip.inputMenu(['CSF', 'Iphone', 'Android','Tablet'],prompt='Please select Phone type: \n', numbered=True)
 
 	print('Creating '+ phonemodel + ' Jabber for location ' + location +'\n')
 
@@ -211,7 +211,7 @@ while True:
 	    'alertingName': alertingname,
 	    'asciiAlertingName': alertingname,
 	    'presenceGroupName': 'Standard Presence group',
-	    'shareLineAppearanceCssName': EXTERNAL_CSS,  #--chg
+	    'shareLineAppearanceCssName': EXTERNAL_CSS,  #Directory Number Settings CSS
 	    'voiceMailProfileName': 'Default',
 	    'networkHoldMohAudioSourceId': '2',
 	    'userHoldMohAudioSourceId': '2',
