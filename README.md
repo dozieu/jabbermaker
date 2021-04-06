@@ -62,9 +62,9 @@ you will need to edit the variables to match your environment
 
 DEFAULT_PT  = partition used by the directory numbers
 
-INTERNAL_CSS  = internal seacrh space if applicable
+INTERNAL_CSS  = internal search space if applicable
 
-EXTERNAL_CSS = external seacrh space if applicable
+EXTERNAL_CSS = external search space if applicable
 
 you will need to edit the dictionaries 'devicepools' and 'searchspace' to reflect your environmnets device pool names and calling search spaces used by your phones.
 
@@ -78,7 +78,7 @@ The script has 2 of each to demonstrate options but you can add more or less as 
 You can add more if applicable e.g. 'site_c': 'devicepool_C'
 if you do, remember to add extra option to variable 'location' and extra 'if' block, like below
 
-location =  pyip.inputMenu(['For Site_A','For Site_B','For Site_C'], numbered=True)
+	location =  pyip.inputMenu(['For Site_A','For Site_B','For Site_C'], numbered=True)
 
 	if location == 'For Site_C':        
     		ph_css = searchspace['site_c']
