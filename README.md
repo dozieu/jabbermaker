@@ -2,10 +2,10 @@
 Create cisco jabber profile with a line added and associates to end user
 
 
-Jabber maker
+Overview
 =============
 
-Jabber maker is Python script that lets you create cisco jabber profiles for PC/MAC, iphone , android and tablet devices.
+Jabbermaker is Python script that lets you create cisco jabber profiles for PC/MAC, iphone , android and tablet devices.
 It will also create a new directory number if user selects to do so.
 The script with create the jabber device profile, add a specified line and associate the device to a specified user.
 
