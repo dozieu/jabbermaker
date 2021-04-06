@@ -69,11 +69,9 @@ EXTERNAL_CSS = external seacrh space if applicable
 you will need to edit the dictionaries 'devicepools' and 'searchspace' to reflect your environmnets device pool names and calling search spaces used by your phones.
 
 
-devicepools = {'site_a':'devicepool_a',   
-               'site_b':'devicepool_b'}
+devicepools = {'site_a':'devicepool_a', 'site_b':'devicepool_b'}
 
-searchspace = {'site_a': 'css_a', 
-                'site_b': 'css_b'}
+searchspace = {'site_a': 'css_a', 'site_b': 'css_b'}
 
 The script has 2 of each to demonstrate options but you can add more or less as applies to you.
 
@@ -82,6 +80,6 @@ if you do, remember to add extra option to variable 'location' and extra 'if' bl
 
 location =  pyip.inputMenu(['For Site_A','For Site_B','For Site_C'], numbered=True)
 
-if location == 'For Site_C':        
-    ph_css = searchspace['site_c']
-    ph_devicepool = devicepools['site_c']
+	if location == 'For Site_C':        
+    		ph_css = searchspace['site_c']
+    		ph_devicepool = devicepools['site_c']
