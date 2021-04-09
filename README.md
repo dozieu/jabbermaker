@@ -83,3 +83,11 @@ if you do, remember to add extra option to variable 'location' and extra 'if' bl
 	if location == 'For Site_C':        
     		ph_css = searchspace['site_c']
     		ph_devicepool = devicepools['site_c']
+		
+		
+Jabbermaker allows user option to setup persistent credentials.
+On running the script you will be presented with an option to 'Enter Setup';
+if select 'yes' you will be prompted to setup persistent credentials. 
+if 'no' and have not previously setup persistent credentials, the script will prompt for login.
+if 'no' and had setup persistent credentials, the script will go straight to Jabber configuration steps.
+
