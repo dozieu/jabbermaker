@@ -3,22 +3,18 @@ from requests import Session
 from requests.auth import HTTPBasicAuth
 from zeep import Client, Settings, Plugin
 from zeep.transports import Transport
-#from zeep.cache import SqliteCache
 from zeep.exceptions import Fault
 import sys
 import urllib3
 import getpass
 import pyinputplus as pyip
+import shelve
 
 
 print('#' * 42)
 print(('#' * 3) + '    -- Jabber Profile Creator --    ' + ('#' * 3))
 print(('#' * 42) + '\n')
 
-
-CUCM_ADDRESS = input('Enter Server Address: ')
-USERNAME = input('usersname: ')
-PASSWORD = getpass.getpass()
 
 
 DEFAULT_PT = 'Default_PT'
@@ -48,6 +44,41 @@ sec_profiles = {'TAB':'Cisco Jabber for Tablet - Standard SIP Non-Secure Profile
                 'TCT': 'Cisco Dual Mode for iPhone - Standard SIP Non-Secure Profile'}
 
 
+
+def run_setup():
+	# For persistenace; saves and retrieves user credentials
+	
+	st_setup = pyip.inputYesNo('\nEnter setup ? (yes or no): ')
+	setup_var = shelve.open('cli_var')
+	usern, pphrase, server = '','',''	
+
+	if st_setup == 'yes':
+		usern = input('username: ')
+		pphrase = getpass.getpass('password: ')
+		server = pyip.inputStr('Enter server IP: ')				
+		setup_var['cli_user'] = usern
+		setup_var['cli_pw'] = pphrase
+		setup_var['server'] = server
+		setup_var.close()
+	    
+	else:
+		if ('cli_user' in setup_var) and ('cli_pw' in setup_var):
+			print('Using saved credentials')
+			usern = setup_var['cli_user']
+			pphrase = setup_var['cli_pw']
+			server = setup_var['server']
+			setup_var.close()
+
+	if usern == '' or server == '':
+		server = input('Enter Server Address: ')
+		usern = input('usersname: ')
+		pphrase = getpass.getpass()
+			
+
+	return usern, pphrase, server
+
+
+
 def get_pt(defaultpt):
 	dn_pt = input(f'Leave blank for default: "{defaultpt}" or Enter Partition: ')
 	if dn_pt == '':
@@ -63,6 +94,8 @@ def make_devicename(dname, devicetype='CSF'):
     dev_name = (devicetype + ((dname.upper())))[:15]
     return (dev_name)
 
+# Initialize credentials
+USERNAME,PASSWORD,CUCM_ADDRESS = run_setup()
 
 # Change to true to enable output of request/response headers and XML
 DEBUG = False
@@ -139,17 +172,17 @@ while True:
 	
 
 	if addDN == 'yes':
-	    dn_pattern = input('Enter new Directory Number: ')
+	    dn_pattern = pyip.inputStr('Enter new Directory Number: ')
 	    dn_partition = get_pt(DEFAULT_PT)
 	    print(f'Using Partition {dn_partition}')
 	    dn_description = input ('Enter Description: ')
 	if addDN == 'no':
-	    dn_pattern = input('Enter existing Directory Number: ')
+	    dn_pattern = pyip.inputStr('Enter existing Directory Number: ')
 	    dn_partition = get_pt(DEFAULT_PT)
 	    print(f'Using Partition {dn_partition}')
 	    dn_description = ''
 
-	userid = input('Enter phone owner UserID: ')
+	userid = pyip.inputStr('Enter phone owner UserID: ')
 	devicename = input('\nEnter device name, (leave blank to use UserID): ')
 	if devicename == '':
 		devicename = userid
@@ -351,6 +384,6 @@ while True:
 	if proceed == 'End':
 	    print('Ending!')
 	    break
-	input('Hit Enter to close.') 
+	
 	print ('Done')
 
